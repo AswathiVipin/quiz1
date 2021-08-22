@@ -1,0 +1,13 @@
+body{
+    background-color: rgb(152, 155, 158);
+}
+.container{
+    background-color: black;
+    width:"2000px";
+    height: 100px;
+}
+.first{
+    color: white;
+    text-align: center;
+    
+}

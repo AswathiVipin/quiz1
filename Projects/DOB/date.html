@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flex-box</title>
+  </head>
+
+<body>
+
+<script >
+var parentdiv=document.createElement('div');
+parentdiv.setAttribute('style','padding-top:20px');
+
+var dateele=document.createElement('input');
+dateele.setAttribute('type','date');
+dateele.setAttribute('id','dob');
+
+parentdiv.appendChild(dateele);
+
+var button=document.createElement('button');
+button.innerHTML="display data";
+button.setAttribute('type','button');
+button.setAttribute('onclick','datecalculation()');
+
+parentdiv.appendChild(button);
+
+var displaydiv=document.createElement('div');
+
+
+
+function datecalculation(){
+  var input=document.getElementById('dob').value;
+  // console.log(typeof(input));
+  // console.log(Date.parse(input));
+  if(Date.parse(input)){
+   
+    var inputdate=new Date(input);
+    console.log(inputdate);
+    var currentdate= new Date();
+    console.log(currentdate);
+
+    // var millisecdiff1=Date.parse(currentdate)-Date.parse(input);
+    // console.log(millisecdiff1);
+  var millisecdiff=parseInt(currentdate.getTime())-parseInt(inputdate.getTime());
+  console.log(millisecdiff);
+//milli -> sec
+  var secdiff=Math.floor(millisecdiff/1000);
+  console.log(secdiff);
+
+  //sec-> minutes 
+var mindiff=Math.floor(secdiff/60);
+console.log(mindiff);
+
+//min->hr
+var hrdiff=Math.floor(mindiff/60);
+console.log(hrdiff);
+
+//hr-> day
+var daydiff=Math.floor(hrdiff/24);
+console.log(daydiff);
+
+//year diff 
+
+var yeardiff=getfullyear(inputdate,currentdate);
+console.log(yeardiff);
+
+var monthdiff=getmonthdiff(inputdate,currentdate);
+console.log(monthdiff);
+
+
+function getfullyear(value1,value2){
+  var date1=new Date(value1);
+  var date2=new Date(value2);
+  return date2.getFullYear()-date1.getFullYear();
+}
+
+function getmonthdiff(value1,value2){
+  var year=currentdate.getFullYear()-inputdate.getFullYear();
+  var month=year*12+(currentdate.getMonth()-inputdate.getMonth());
+  return month;
+}
+displaydiv.innerHTML=`the date is ${inputdate} <br>
+millsec differnce: ${millisecdiff} <br>
+sec difference :${secdiff}  <br>
+minutes difference :${mindiff} <br>
+hours difference : ${hrdiff} <br>
+month diffrerence :${monthdiff} <br>
+year difference :${yeardiff}`;
+
+
+
+  }
+  else{
+    displaydiv.innerHTML="input date is not valid";
+  }
+
+  document.body.appendChild(displaydiv);
+
+}
+
+document.body.append(parentdiv);
+
+</script>
+
+ 
+</body>
+
+</html>

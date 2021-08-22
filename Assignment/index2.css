@@ -1,0 +1,13 @@
+body{
+    background-color: black;
+}
+.name{
+    margin-top: 100px;
+    margin-left: 100px;
+}
+.first{
+    height: 500px;
+    width: 2000px;
+  
+    color: white;
+}
